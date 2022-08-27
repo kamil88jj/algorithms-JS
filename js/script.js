@@ -200,3 +200,46 @@ const anagram2 = (a,b) => [...a.toLowerCase()].sort().toString() === [...b.toLow
 
 console.log(anagram('friend', 'Finder'));
 console.log(anagram('hello', 'bye'));
+
+
+
+
+
+
+// НАЙТИ ДВА ЧИСЛА В МАССИВЕ КОТОРЫЕ ВМЕСТЕ ДАДУТ ЗАДАННУЮ СУММУ 
+//СПОСОБ 1
+const sumOfTwo = (arr, target) => {
+    let result = [];
+    
+    for(let i = 0; i < arr.length; i++) {
+        for(let j = i + 1; j < arr.length; j++) {
+            if (arr[i] + arr[j] === target ) {
+                result.push(i);
+                result.push(j); 
+            }
+        }
+    }
+    return result;
+};
+
+console.log(sumOfTwo( [2, 7, 11, 15], 22 ));
+
+//СПОПСОБ 2
+const sumOfTwo = (arr, target) => { 
+    const numObject = {};
+
+    for(let i = 0; i < arr.length; i++) {
+        numObject[arr[i]] = i;
+    }
+
+    for(let i = 0; i < arr.length; i++) {
+        let diff = target - arr[i];
+
+        if(numObject[diff] && numObject[diff] !== i) {
+            return [i, numObject[diff]];
+        }
+    }
+    return [];
+};
+
+console.log(sumOfTwo( [2, 7, 11, 15], 26 ));
